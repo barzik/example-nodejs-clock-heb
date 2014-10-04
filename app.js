@@ -4,6 +4,7 @@ The handler is being fired rght after
 **/
 var app = require('http').createServer(handler) 
 var io = require('socket.io')(app);
+
 var fs = require('fs'); //We need fs to call index.html
 var port = process.env.PORT || 3000;
 
