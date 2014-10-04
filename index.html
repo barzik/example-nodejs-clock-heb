@@ -11,12 +11,15 @@
         <!--[if IE]>
             <p>Go away. no IE allowed in here.</p>
         <![endif]-->
-        
+        <p id="clock"></p>
         <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
         <script>
+        console.log('hello');
           var socket = io.connect(document.URL);
           socket.on('clock-event', function (data) {
-            document.write(data);
+
+            document.getElementById("clock").innerHTML = data;
+            console.log(data);
           });
         </script>
     </body>
