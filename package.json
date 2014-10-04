@@ -6,6 +6,9 @@
   "scripts": {
     "test": "nodejs app.js"
   },
+  "dependencies": {
+      "socket.io": "~1.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/barzik/example-nodejs-clock-heb.git"
