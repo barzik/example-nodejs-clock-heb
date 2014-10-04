@@ -1,0 +1,23 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>שעון</title>
+        <meta name="description" content="ניסוי השעון של רן בר-זיק">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <!--[if IE]>
+            <p>Go away. no IE allowed in here.</p>
+        <![endif]-->
+        
+        <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
+        <script>
+          var socket = io.connect('http://localhost');
+          socket.on('clock-event', function (data) {
+            document.write(data);
+          });
+        </script>
+    </body>
+</html>
