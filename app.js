@@ -26,23 +26,15 @@ function handler (req, res) {
 
     res.writeHead(200); //returning 200
     res.end(data); //printing the data - the index.html content
+
+    /** Starting the interval that transmit to every socket **/
+    var clockInterval = setInterval(function(){ //running it every second
+    var current_time = getCurrentTime(); //calculating the time 
+      io.sockets.emit('clock-event', current_time); //emitting the clock-event through the socket
+    },  1000);  
   });
 }
 
-/**
-IO event on connection. here is the magic
-**/
-
-io.on('connection', function (socket) { //connection event. happends when a connection is initiated
-  var clockInterval = setInterval(function(){ //running it every second
-  var current_time = getCurrentTime(); //calculating the time 
-    socket.emit('clock-event', current_time); //emitting the clock-event through the socket
-  },  1000);  
-    socket.on("disconnect", function(s) { //when the socket is being closed, destroy the interval
-      console.log('user disconnected! resetting interval');
-      clearInterval(clockInterval);
-  });  
-});
 
 
 /** function for printing the hour. Taken from 
