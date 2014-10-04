@@ -6,7 +6,7 @@ var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
 var fs = require('fs'); //We need fs to call index.html
 
-app.listen(3000); //Listening on port 3000. change it to 80 if you don't have Apache
+app.listen(80); //Listening on port 80. change it to 3000 if you have Apache on local machine
 
 /**
 Callback that fired when http.createServer completed
