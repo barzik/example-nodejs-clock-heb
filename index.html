@@ -14,7 +14,7 @@
         
         <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
         <script>
-          var socket = io.connect('http://localhost');
+          var socket = io.connect(document.URL);
           socket.on('clock-event', function (data) {
             document.write(data);
           });
