@@ -1,0 +1,23 @@
+{
+  "name": "example-nodejs-clock-heb",
+  "version": "1.0.0",
+  "description": "This is an example application for socket.io.",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodejs app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/barzik/example-nodejs-clock-heb.git"
+  },
+  "keywords": [
+    "clock",
+    "example",
+    "socket.io"
+  ],
+  "author": "Ran Bar-Zik",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/barzik/example-nodejs-clock-heb/issues"
+  }
+}
