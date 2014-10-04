@@ -8,11 +8,7 @@ var fs = require('fs'); //We need fs to call index.html
 var port = process.env.PORT || 3000;
 
 app.listen(port); //Listening on port 80. change it to 3000 if you have Apache on local machine
-io.configure(function () {
-    io.set("transports", ["xhr-polling"]);
-    io.set("polling duration", 10);
-    io.set("log level", 1);
-});
+
 /**
 Callback that fired when http.createServer completed
 
