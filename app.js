@@ -5,8 +5,9 @@ The handler is being fired rght after
 var app = require('http').createServer(handler) 
 var io = require('socket.io')(app);
 var fs = require('fs'); //We need fs to call index.html
+var port = process.env.PORT || 3000;
 
-app.listen(3000); //Listening on port 80. change it to 3000 if you have Apache on local machine
+app.listen(port); //Listening on port 80. change it to 3000 if you have Apache on local machine
 
 /**
 Callback that fired when http.createServer completed
@@ -31,16 +32,16 @@ function handler (req, res) {
 IO event on connection. here is the magic
 **/
 
-// io.on('connection', function (socket) { //connection event. happends when a connection is initiated
-//   var clockInterval = setInterval(function(){ //running it every second
-//   var current_time = getCurrentTime(); //calculating the time 
-//     socket.emit('clock-event', current_time); //emitting the clock-event through the socket
-//   },  1000);  
-//     socket.on("disconnect", function(s) { //when the socket is being closed, destroy the interval
-//       console.log('user disconnected! resetting interval');
-//       clearInterval(clockInterval);
-//   });  
-// });
+io.on('connection', function (socket) { //connection event. happends when a connection is initiated
+  var clockInterval = setInterval(function(){ //running it every second
+  var current_time = getCurrentTime(); //calculating the time 
+    socket.emit('clock-event', current_time); //emitting the clock-event through the socket
+  },  1000);  
+    socket.on("disconnect", function(s) { //when the socket is being closed, destroy the interval
+      console.log('user disconnected! resetting interval');
+      clearInterval(clockInterval);
+  });  
+});
 
 
 /** function for printing the hour. Taken from 
