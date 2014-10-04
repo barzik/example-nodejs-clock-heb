@@ -31,16 +31,16 @@ function handler (req, res) {
 IO event on connection. here is the magic
 **/
 
-io.on('connection', function (socket) { //connection event. happends when a connection is initiated
-  var clockInterval = setInterval(function(){ //running it every second
-  var current_time = getCurrentTime(); //calculating the time 
-    socket.emit('clock-event', current_time); //emitting the clock-event through the socket
-  },  1000);  
-    socket.on("disconnect", function(s) { //when the socket is being closed, destroy the interval
-      console.log('user disconnected! resetting interval');
-      clearInterval(clockInterval);
-  });  
-});
+// io.on('connection', function (socket) { //connection event. happends when a connection is initiated
+//   var clockInterval = setInterval(function(){ //running it every second
+//   var current_time = getCurrentTime(); //calculating the time 
+//     socket.emit('clock-event', current_time); //emitting the clock-event through the socket
+//   },  1000);  
+//     socket.on("disconnect", function(s) { //when the socket is being closed, destroy the interval
+//       console.log('user disconnected! resetting interval');
+//       clearInterval(clockInterval);
+//   });  
+// });
 
 
 /** function for printing the hour. Taken from 
