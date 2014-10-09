@@ -31,6 +31,12 @@ function handler (req, res) {
 							});
 }
 
+/**
+ *
+ * io event that fires right after connection
+ *
+ */
+
 io.sockets.on('connect', function(socket) {
 	var timer = new TimerEvents(io);
 
@@ -51,10 +57,41 @@ io.sockets.on('connect', function(socket) {
 
 });
 
+/**
+ *
+ * @returns {Number}
+ */
+
 function countConnectedClients() {
 	var ns = io.of("/");    // the default namespace is "/"
 	return Object.keys(ns.connected).length;
 }
+
+/**
+ *
+ * creating timer object.
+ *
+ * @param io
+ * @returns {{start: Function, stop: Function}}
+ * @constructor
+ */
+
+var TimerEvents = function(io) {
+    var timer;
+
+    return {
+        start: function() {
+            timer = setInterval(function(){ //running it every second
+                var current_time = getCurrentTime(); //calculating the time
+                io.sockets.emit('clock-event', current_time); //emitting the clock-event through the socket
+            },  1000);
+        },
+
+        stop: function() {
+            clearInterval(timer);
+        }
+    }
+};
 
 
 /** function for printing the hour. Taken from 
@@ -84,20 +121,5 @@ function parseHtml(currentTime){
 }
 
 
-var TimerEvents = function(io) {
-	var timer;
 
-	return {
-		start: function() {
-			timer = setInterval(function(){ //running it every second
-				var current_time = getCurrentTime(); //calculating the time 
-				io.sockets.emit('clock-event', current_time); //emitting the clock-event through the socket
-			},  1000);  
-		},
-
-		stop: function() {
-			clearInterval(timer);
-		}
-	}
-};
 
